@@ -1883,6 +1883,22 @@ export class ConferenceService extends CubeService {
 	*/
 	getRemoteView(){}
 
+    /**
+     * 根据条件查询会议
+     *
+     * @param {Array} condtion 群组id集合 || 会议类型集合 || 会议id集合  只支持单个集合查询
+     * @return {Function}callback  成功回调
+     * @return {Function}errorCallback  错误回调
+     * */
+    queryConferences(condition, callback , errorCallback){}
+
+    /**
+     * 查询所有会议
+     *
+     * @return {Function}callback 回调
+     * */
+    queryAllConference(callback){}
+
 }
 /*
  * Boot.js
@@ -2362,6 +2378,15 @@ export class GroupListener extends Listener {
     onGroupApplyJoined(group, from, applier) {
     };
 
+    /**
+     * 退出群组时回调
+     *
+     * @param group 群组实体
+     * @param from  退出者
+     */
+    onGroupQuited(group, from){
+    };
+
 
     /**
      * 收到邀请回调(仅邀请者自己和被邀请者回调)
@@ -2609,6 +2634,12 @@ export class UserListener extends Listener {
      * @param {onlineDevices} 在线设备信息
      */
     onDeviceOffline(logoutDevice,onlineDevices) { }
+
+    /**
+     * 用户更新回调
+     * @param user
+     */
+    onUserUpdated(user){}
 
 
     onFailed(error, ...args) { }
