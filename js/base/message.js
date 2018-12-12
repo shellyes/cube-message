@@ -2,12 +2,12 @@
 function toBottom() {
 	setTimeout(() => {
 		let cell = document.getElementsByClassName('message-show')[0];
-		cell.scrollTop = cell.scrollHeight;
+		cell.scrollTop = cell.scrollHeight+100;
 	}, 100)
 }
 //获取历史消息
 function queryHistory() {
-	let cubeId = window.messagePeer,
+	let cubeId = window.loginInfo.messagePeer,
 		offset = 1,
 		cubeCallback = function(messages) {
 			messages.forEach((message) => {
@@ -37,7 +37,7 @@ function messageReceived(message, type) {
 	oLi.appendChild(oP);
 	oLi.appendChild(oDiv);
 	if(type) {
-		oP.innerHTML = window.userId;
+		oP.innerHTML = window.loginInfo.userId;
 		if(type == 'text') {
 			oDiv.innerHTML = message
 			messageShow.appendChild(oLi);
@@ -120,6 +120,7 @@ class AppMessageListener {
 	}
 
 	onMessageSyncBegin() {
+		queryHistory();
 		console.log('开始同步消息')
 	}
 

@@ -7,23 +7,31 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="css/grid.css" />
 		<link rel="stylesheet" type="text/css" href="css/message.css" />
-		<!-- 引擎js -->
-		<script type="text/javascript" src="js/lib/Genie-min.js"></script>
-		<script type="text/javascript" src="js/lib/cube-core.js"></script>
-		<script type="text/javascript" src="js/lib/cube-message.js"></script>
-		<!-- 自定义元素 -->
-		<script type="text/javascript" src="js/component/Component.js"></script>
-		<script type="text/javascript" src="js/component/CubeMessage.js"></script>
-
 	</head>
 
 	<body>
 		<div id="root">登录中。。。</div>
 		<!--sendImg 发送图片按钮 sendFile 发送文件按钮-->
 		<cube-message class="app-drawer" sendImg sendFile></cube-message>
-		
+
 	</body>
-	
+	<script type="text/javascript">
+		//必填登录信息
+		var loginInfo = {
+			'messagePeer': '10255986',//接收方的userId
+			'userId': '10255984',//登录用户的userId
+			'appId': '9c2ed36ae5d34131b3768ea432da6cea005',
+			'appKey': '5df6d5495fb74b35ad157c94977527ff005',
+		};
+		
+	</script>
+	<!-- 引擎js -->
+	<script type="text/javascript" src="js/lib/Genie-min.js"></script>
+	<script type="text/javascript" src="js/lib/cube-core.js"></script>
+	<script type="text/javascript" src="js/lib/cube-message.js"></script>
+	<!-- 自定义元素 -->
+	<script type="text/javascript" src="js/component/Component.js"></script>
+	<script type="text/javascript" src="js/component/CubeMessage.js"></script>
 	<script type="text/javascript" src="js/base/message.js"></script>
 	<script type="text/javascript" src="js/base/base.js"></script>
 

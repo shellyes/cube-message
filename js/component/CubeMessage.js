@@ -2,7 +2,6 @@ class CubeMessage extends Component {
 	constructor(props) {
 		super(props);
 		this.data = this.props;
-		console.log('this.data', this.data)
 	}
 
 	// A getter/setter for a disabled property.
@@ -95,7 +94,7 @@ class CubeMessage extends Component {
 		oLi.appendChild(oP);
 		oLi.appendChild(oDiv);
 		if(type) {
-			oP.innerHTML = window.userId;
+			oP.innerHTML = window.loginInfo.userId;
 			if(type == 'text') {
 				oDiv.innerHTML = message
 				messageShow.appendChild(oLi);
@@ -136,19 +135,19 @@ class CubeMessage extends Component {
 	};
 	//发送图片消息
 	sendImageMessage() {
-		let image = new CubeImageMessage(window.messagePeer);
+		let image = new CubeImageMessage(window.loginInfo.messagePeer);
 
 		image.chooseFile((file) => {
-			window.cube.getMessageService().sendMessage(window.messagePeer + '', image);
+			window.cube.getMessageService().sendMessage(window.loginInfo.messagePeer + '', image);
 		});
 
 	};
 	//发送文件消息
 	sendFileMessage() {
-		let message = new CubeFileMessage(window.messagePeer);
+		let message = new CubeFileMessage(window.loginInfo.messagePeer);
 		message.chooseFile((file) => {
 			let fileName = message.file.name;
-			window.cube.getMessageService().sendMessage(window.messagePeer + '', message);
+			window.cube.getMessageService().sendMessage(window.loginInfo.messagePeer + '', message);
 		});
 	};
 	onLoad() {
