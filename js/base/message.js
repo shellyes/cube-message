@@ -2,7 +2,7 @@
 function toBottom() {
 	setTimeout(() => {
 		let cell = document.getElementsByClassName('message-show')[0];
-		cell.scrollTop = cell.scrollHeight+100;
+		cell.scrollTop = cell.scrollHeight + 100;
 	}, 100)
 }
 //获取历史消息
@@ -11,7 +11,6 @@ function queryHistory() {
 		offset = 1,
 		cubeCallback = function(messages) {
 			messages.forEach((message) => {
-				console.log(message)
 				messageReceived(message)
 			})
 		};
@@ -21,21 +20,53 @@ function queryHistory() {
 		cubeCallback
 	})
 };
+//播放语音
+function playAudio() {
+	let playAudio = document.querySelectorAll('.playAudio')
+	console.log(playAudio)
+	for(var i = 0; i < playAudio.length; i++) {
+		playAudio[i].index = i;
 
+		playAudio[i].onclick = function() {
+			let j = 1;
+			var playAudioTimer = 0;
+			clearInterval(playAudioTimer);
+			playAudioTimer = setInterval(() => {
+				console.log(j)
+				if(j <= 3) {
+					playAudio[this.index].className = `playAudio pointer state state${j}`
+					j++;
+				} else {
+					j = 1;
+				}
+			}, 500)
+			setTimeout(() => {
+				playAudio[this.index].className = `playAudio pointer state state3`
+				clearInterval(playAudioTimer);
+			}, this.firstElementChild.innerText * 1000);
+
+			console.log(this.index)
+			this.lastElementChild.play()
+		}
+	}
+};
 //接收消息填充页面
 function messageReceived(message, type) {
 	if(!message.content && message.type == 'text') return false;
 	var messageShow = document.querySelector('.message-show'),
-		oLi = document.createElement('li'),
-		oP = document.createElement('p'),
+		oLi = document.createElement('div'),
+		oBox = document.createElement('div');
+	oP = document.createElement('p'),
 		oDiv = document.createElement('div'),
 		oImg = document.createElement('img'),
 		oFile = document.createElement('a');
+	//		oAudio = document.createElement('audio');
 	oP.className = 'name';
 	oDiv.className = 'content';
-
-	oLi.appendChild(oP);
-	oLi.appendChild(oDiv);
+	oBox.className = 'container';
+	oLi.appendChild(oBox)
+	oBox.appendChild(oP);
+	oBox.appendChild(oDiv);
 	if(type) {
 		oP.innerHTML = window.loginInfo.userId;
 		if(type == 'text') {
@@ -53,6 +84,17 @@ function messageReceived(message, type) {
 			oFile.target = "_blank"
 			oDiv.appendChild(oFile)
 			messageShow.appendChild(oLi);
+		}
+		if(type == 'voice') {
+			console.log('语音消息')
+			console.log(message)
+			let oAudio = `<div class="playAudio pointer state state3">
+							<span class="duration">${message.file.duration}</span><span>"</span>
+							<audio src="${message.file.url}"></audio>
+						</div>`
+			oDiv.innerHTML = oAudio
+			messageShow.appendChild(oLi);
+			playAudio();
 		}
 	} else {
 		oP.innerHTML = message.sender.name;
@@ -72,10 +114,22 @@ function messageReceived(message, type) {
 			oDiv.appendChild(oFile)
 			messageShow.appendChild(oLi);
 		}
+		if(message.type == 'voice') {
+			console.log('语音消息')
+			console.log(message)
+			let oAudio = `<div class="playAudio pointer state state3">
+							<span class="duration">${message.file.duration}</span><span>"</span>
+							<audio src="${message.file.url}"></audio>
+						</div>`
+			oDiv.innerHTML = oAudio
+			messageShow.appendChild(oLi);
+			playAudio();
+		}
 	}
 
 	toBottom();
 };
+
 class AppMessageListener {
 	onMessageSent(message) {
 		console.log('消息发送成功')
@@ -85,6 +139,10 @@ class AppMessageListener {
 		}
 		if(message.type == 'file') {
 			messageReceived(message, 'file')
+		}
+		if(message.type == 'voice') {
+			messageReceived(message, 'voice')
+
 		}
 
 	}

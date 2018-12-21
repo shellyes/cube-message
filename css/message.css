@@ -1,22 +1,17 @@
-body,
-html {
-	font-size: 50px;
+
+p{
+	margin: 0;
+	padding: 0;
 }
 
-@media screen and (max-width: 900px) {
-	body,
-	html {
-		font-size: 100px;
-	}
-}
 
 #root {
-	font-size: 0.32rem;
+	font-size: 24px;
 }
 
 .message-content {
 	position: absolute;
-	top: 1rem;
+	top: 60px;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -28,7 +23,7 @@ html {
 
 .message-show {
 	overflow-y: auto;
-	padding: 0.1rem;
+	padding: 10px;
 }
 
 
@@ -38,25 +33,32 @@ html {
 	background-color: #eef2f5;
 }*/
 
-.message-show li .content {
-	padding: 0.1rem;
-	margin: 0.1rem 0;
-	background-color: #eef2f5;
-	font-size: 0.14rem;
+.message-show .container .content {
+	max-width: 80%;
+    word-break: break-all;
+    border: 1px solid #EBF1FB;
+    background-color: #EBF1FB;
+    padding: 10px 15px;
+    color: #001300;
+    border-radius: 0 6px 6px 6px;
+    margin-top: 5px;
+    line-height: 28px;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
-.message-show li .name {
-	font-size: 0.14rem;
+.message-show .container .name {
+	font-size: 14px;
 }
 
-.message-show li .content img {
-	max-width: 3rem;
-	max-height: 3rem;
+.message-show .container .content img {
+	max-width: 300px;
+	max-height: 300px;
 	overflow: hidden;
 }
 
 .message-send {
-	height: 2.5rem;
+	height: 200px;
 	overflow: hidden;
 	position: relative;
 	box-sizing: border-box;
@@ -66,15 +68,15 @@ html {
 .message-send textarea {
 	box-sizing: border-box;
 	display: block;
-	margin-right: 0.1rem;
+	margin-right: 10px;
 	border: none;
 	outline: none;
 	width: 100%;
-	height: 1rem;
-	padding: 0 0.1rem;
+	height: 100px;
+	padding: 0 10px;
 	resize: none;
-	font-size: 0.14rem;
-	padding: 0.1rem;
+	font-size: 14px;
+	padding: 10px;
 	background-color: #fff;
 	overflow: hidden;
 }
@@ -82,14 +84,14 @@ html {
 .send-btn {
 	position: absolute;
 	text-align: center;
-	padding: 0.1rem 0.15rem;
-	font-size: 0.14rem;
+	padding: 10px 15px;
+	font-size: 14px;
 	background-color: #16acff;
 	cursor: pointer;
-	right: 0.1rem;
-	bottom: 0.1rem;
+	right: 20px;
+	bottom: 20px;
 	color: #fff;
-	border-radius: 0.1rem;
+	border-radius: 10px;
 }
 
 .message-type {
@@ -99,11 +101,14 @@ html {
 
 .message-type .photo,
 .message-type .file,
-.message-type .audio {
+.message-type .audio,
+.message-type .voice,
+.message-type .video,
+.message-type .whiteboard {
 	box-sizing: content-box;
-	padding: 0.1rem;
-	width: 0.34rem;
-	height: 0.34rem;
+	padding: 10px;
+	width: 24px;
+	height: 24px;
 	/*overflow: hidden;*/
 	cursor: pointer;
 	display: none;
@@ -112,7 +117,10 @@ html {
 
 .message-type .photo img,
 .message-type .file img,
-.message-type .audio img {
+.message-type .audio img,
+.message-type .voice img,
+.message-type .video img,
+.message-type .whiteboard img {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -120,31 +128,246 @@ html {
 
 .message-type .photo.active,
 .message-type .file.active,
-.message-type .audio.active {
+.message-type .audio.active,
+.message-type .voice.active,
+.message-type .video.active,
+.message-type .whiteboard.active {
 	display: block;
 }
 
-.audioInfo{
-	width: 3rem;
+.audioInfo {
+	width: 300px;
 	background-color: #fff;
 	border: 1px solid #eeeeee;
 	position: absolute;
-	font-size: 0.14rem;
-	bottom: 0.6rem;
+	font-size: 14px;
+	bottom: 60px;
 	display: none;
 }
-.audioInfo p{
+
+.audioInfo p {
 	text-align: center;
-	padding: 0.3rem 0;
+	padding: 30px 0;
 }
-.audio-item{
+
+.audio-item {
 	background-color: #16acff;
 	color: #ffffff;
-	padding:0.1rem 0;
+	padding: 10px 0;
 }
-.audio-item:nth-of-type(1){
+
+.audio-item:nth-of-type(1) {
 	background-color: #74bce4;
 }
-.audioInfo.active{
+
+.audioInfo.active {
 	display: block;
+}
+.pointer{
+	cursor: pointer;
+}
+.duration {
+	color: #001300;
+	padding-left: 15px;
+	line-height: 21px;
+}
+
+.state {
+	background-position: left center;
+	width: 45px;
+	height: 20px;
+	background: url('../img/voice3.png') no-repeat;
+}
+	.state.state1 {
+		background: url('../img/voice1.png') no-repeat;
+	}
+	.state.state2 {
+		background: url('../img/voice2.png') no-repeat;
+	}
+	.state.state3 {
+		background: url('../img/voice3.png') no-repeat;
+	}
+	
+.show-hidden {
+    z-index: 1000;
+}
+.cp-message-bottom-fixed {
+    position: fixed;
+    top: 25px;
+    right: 20px;
+    box-sizing: border-box;
+    width: 300px;
+    box-shadow: 0 4px 13px 1px hsla(0,0%,82%,.5);
+    z-index: 99999;
+    background-color: #fff;
+    border-radius: 4px;
+    text-align: left;
+    font-size: 14px;
+    display: none;
+}
+.cp-message-bottom-fixed.active{
+	display: block;
+}
+.cp-message-bottom-fixed .cp-mbf-header>img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.cp-message-bottom-fixed .cp-mbf-header>.cp-mbf-header-right {
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.cp-message-bottom-fixed .cp-mbf-header>.cp-mbf-header-right p:last-child {
+    color: #666;
+    font-size: 14px;
+}
+.cp-message-bottom-fixed .cp-mbf-footer {
+    height: 50px;
+    line-height: 50px;
+    border-top: 1px solid #ddd;
+    margin-top: 5px;
+    text-align: right;
+}
+.el-button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.cp-message-bottom-fixed .cp-mbf-footer .el-button {
+    height: 30px;
+    padding: 0 20px;
+}
+.el-button--danger {
+    color: #fff;
+    background-color: #f56c6c;
+    border-color: #f56c6c;
+}
+.el-button+.el-button {
+    margin-left: 10px;
+}
+
+.el-button--success {
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+}
+.mr20{
+	margin-right: 20px;
+}
+
+.hidden-all {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    opacity: .5;
+    display: none;
+}
+.hidden-all.active{
+	display: block;
+}
+.cp-during-voice-call,.cp-during-video-call {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: left;
+    box-sizing: border-box;
+    padding: 0 20px;
+    height: 600px;
+    width: 860px;
+    line-height: 40px;
+    font-size: 16px;
+    z-index: 1111;
+    background-color: #000;
+    color: silver;
+    display: none;
+}
+.cp-during-voice-call.active, .cp-during-video-call.active{
+	display: block;
+}
+.cp-during-voice-call .voice-call-box, .cp-during-video-call .voice-call-box{
+    position: relative;
+    height: 560px;
+}
+.cp-during-voice-call .voice-call-box>p, .cp-during-video-call .voice-call-box>p{
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    color: silver;
+    left: 0;
+    right: 0;
+}
+.quit-button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    border-top: 1px solid hsla(0,0%,95%,.2);
+}
+.quit-button .el-button {
+    position: absolute;
+    right: 20px;
+    padding: 0 10px;
+    height: 30px;
+    top: 5px;
+}
+#local_video,#remote_video,#c_local_video,#c_remote_video{
+	visibility: hidden;
+}
+#local_video.active,#remote_video.active,#c_local_video.active,#c_remote_video.active{
+	visibility:visible;
+}
+
+.conference-video{
+	position: absolute;
+    width: 640px;
+    height: 430px;
+    top: calc(50% - 249px);
+    z-index: 99998;
+    left: calc(50% - 100px);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+#remote_video {
+    position: absolute;
+    width: 750px;
+    height: 470px;
+    top: 50%;
+    z-index: 99998;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+#local_video {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 63%;
+    left: 65%;
+    z-index: 99999;
 }

@@ -25,6 +25,11 @@ function start() {
 	// 启动 Cube Engine
 	window.cube.startup(function(error) {
 		if(error) throw error
+		// 加载通话模块
+		window.cube.loadSignaling('local_video', 'remote_video', 'bell_audio');
+		// 加载会议模块
+		window.cube.loadConference("c_local_video", "c_remote_video", "c_bell_audio", "c_local_canvas");
+
 		// 加载即时消息模块
 		window.cube.loadMessager();
 		let service = window.cube.getUserService()
@@ -32,11 +37,14 @@ function start() {
 		service.addListener(new AppAccountListener())
 		// 设置消息监听器
 		window.cube.getMessageService().addListener(new AppMessageListener());
+		// 设置消息监听器
+		window.cube.getCallService().addListener(new AppCallListener());
+		// 设置会议监听器
+		window.cube.getConferenceService().addListener(new AppConferenceListener())
 		// 登陆
 		let name = window.loginInfo.userId,
 			displayName = window.loginInfo.userId,
 			token = window.userToken;
-		console.log(window.userToken)
 		setTimeout(function() {
 			service.login(name, token, displayName);
 		}, 2000)

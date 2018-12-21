@@ -4,16 +4,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="css/grid.css" />
-		<link rel="stylesheet" type="text/css" href="css/message.css" />
+		<link rel="stylesheet" type="text/css" href="http://cube.getcube.cn/webSourceCode/cubeComponent/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="http://cube.getcube.cn/webSourceCode/cubeComponent/css/grid.css" />
+		<link rel="stylesheet" type="text/css" href="http://cube.getcube.cn/webSourceCode/cubeComponent/css/message.css" />
 	</head>
 
 	<body>
+
 		<div id="root">登录中。。。</div>
-		<!--sendImg 发送图片按钮 sendFile 发送文件按钮-->
-		<cube-message class="app-drawer" sendImg sendFile sendAudio></cube-message>
-		
+		<!--sendImg 发送图片按钮 
+		sendFile 发送文件按钮 
+		sendAudio发送语音消息 
+		sendVoice语音通话 
+		sendVideo视频通话-->
+		<cube-message class="app-drawer" sendImg sendFile sendAudio sendVoice sendVideo></cube-message>
+
 	</body>
 	<script type="text/javascript">
 		//必填登录信息
@@ -25,16 +30,19 @@
 		};
 	</script>
 	<!-- 引擎js -->
-	<script type="text/javascript" src="js/lib/Genie-min.js"></script>
-	<script type="text/javascript" src="js/lib/cube-core.js"></script>
-	<script type="text/javascript" src="js/lib/cube-message.js"></script>
-	<script type="text/javascript" src="js/lib/cube-signaling.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/lib/Genie-min.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/lib/cube-core.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/lib/cube-message.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/lib/cube-signaling.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/lib/cube-sipworker.js"></script>
+
 	<!-- 自定义元素 -->
-	<script type="text/javascript" src="js/component/Component.js"></script>
-	<script type="text/javascript" src="js/component/CubeMessage.js"></script>
-	<script type="text/javascript" src="js/base/message.js"></script>
-	<!--<script type="text/javascript" src="js/base/signaling.js"></script>-->
-	
-	<script type="text/javascript" src="js/base/base.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/component/Component.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/component/CubeMessage.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/base/message.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/base/signaling.js"></script>
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/base/conference.js"></script>
+
+	<script type="text/javascript" src="http://cube.getcube.cn/webSourceCode/cubeComponent/js/base/base.js"></script>
 
 </html>
